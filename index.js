@@ -3,6 +3,7 @@ import express from 'express';
 import morgan from 'morgan';
 import productRoutes from './routes/productRoutes.js';
 import mongoose from 'mongoose';
+import fileUpload from 'express-fileupload';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -24,6 +25,13 @@ mongoose
 //middleware
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(
+  fileUpload({
+    limits: { fileSize: 5 * 1024 * 1024 },
+    abortOnLimit: true,
+  })
+);
+app.use(express.static('uploads'));
 
 //routes
 app.get('/', (req, res) => {
