@@ -7,13 +7,13 @@ export const validates = validate.createValidator({});
 export const loginSchema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().min(4).max(40).required(),
-});
+}).unknown(true);
 
 export const registerSchema = Joi.object({
   username: Joi.string().min(3).max(30).required(),
   email: Joi.string().email().required(),
   password: Joi.string().min(4).max(40).required(),
-});
+}).unknown(true);
 
 export const productValSchema = Joi.object({
   name: Joi.string().min(0).required(),

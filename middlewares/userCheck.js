@@ -3,6 +3,7 @@ import User from '../models/User.js';
 
 export const userCheck = async (req, res, next) => {
   const token = req.headers.authorization;
+  //console.log(req.headers);
   const decodedToken = jwt.decode(token, 'secret');
   if (decodedToken) {
     req.userId = decodedToken.id;

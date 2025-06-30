@@ -89,19 +89,6 @@ export const addProduct = async (req, res) => {
   }
 };
 
-// export const setProduct = async (req, res, next) => {
-//   try {
-//     const product = await Product.findById(req.params.id);
-//     if (!product) {
-//       return res.status(404).json({ message: 'Product not found' });
-//     }
-//     req.product = product;
-//     next();
-//   } catch (err) {
-//     return res.status(400).json({ message: `${err}` });
-//   }
-// };
-
 export const updateProduct = async (req, res) => {
   const product = req.product;
   const { name, category, price, description } = req.body;
