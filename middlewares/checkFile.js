@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import path from 'path';
 
-const supportedTypes = ['.png', '.jpeg', '.jpg', '.gif', '.webp'];
+const supportedTypes = ['.jpeg', '.jpg', '.png', '.webp', '.gif'];
 
 export const fileCheck = (req, res, next) => {
   const file = req.files?.image;
@@ -20,10 +20,10 @@ export const fileCheck = (req, res, next) => {
     } else {
       return res
         .status(400)
-        .json({ message: 'please provide valid image file' });
+        .json({ message: 'Please provide valid image file' });
     }
   } else {
-    return res.status(400).json({ message: 'please provide image file' });
+    return res.status(400).json({ message: 'Please provide image file' });
   }
 };
 
@@ -41,7 +41,7 @@ export const updateFileCheck = (req, res, next) => {
     } else {
       return res
         .status(400)
-        .json({ message: 'please provide valid image file' });
+        .json({ message: 'Please provide valid image file' });
     }
   } else {
     next();

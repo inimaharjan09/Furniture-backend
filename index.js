@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import productRoutes from './routes/productRoutes.js';
 import mongoose from 'mongoose';
 import fileUpload from 'express-fileupload';
+import userRoutes from './routes/userRoutes.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -35,9 +36,11 @@ app.use(express.static('uploads'));
 
 //routes
 app.get('/', (req, res) => {
+  console.log(req.body);
   return res.status(200).json({
     message: 'Welcome to BACKEND',
   });
 });
 
-app.use(productRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/users', userRoutes);
