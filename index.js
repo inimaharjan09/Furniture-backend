@@ -5,6 +5,7 @@ import productRoutes from './routes/productRoutes.js';
 import mongoose from 'mongoose';
 import fileUpload from 'express-fileupload';
 import userRoutes from './routes/userRoutes.js';
+import cors from 'cors';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -24,8 +25,10 @@ mongoose
   });
 
 //middleware
+app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
+
 app.use(
   fileUpload({
     limits: { fileSize: 5 * 1024 * 1024 },

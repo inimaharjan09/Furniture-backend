@@ -46,7 +46,7 @@ export const getProducts = async (req, res) => {
     const products = await query
       .skip(skip)
       .limit(limit)
-      .select('name rating price description image');
+      .select('name rating price image');
 
     return res.status(200).json(products);
   } catch (err) {
