@@ -40,8 +40,8 @@ export const getProducts = async (req, res) => {
     }
 
     const page = req.query.page || 1;
-    const limit = req.query.limit || 10;
-    const skip = (page - 1) * 10;
+    const limit = req.query.limit || 20;
+    const skip = (page - 1) * 20;
 
     const products = await query
       .skip(skip)
@@ -66,7 +66,7 @@ export const getProduct = (req, res) => {
 
 export const addProduct = async (req, res) => {
   //console.log(req.body);
-  const { name, price, description, category } = req.body;
+  const { name, price, description, category, color, size } = req.body;
 
   try {
     await Product.create({
@@ -75,6 +75,8 @@ export const addProduct = async (req, res) => {
       description,
       category,
       image: req.image,
+      color,
+      size,
     });
 
     return res.status(200).json({
@@ -91,12 +93,14 @@ export const addProduct = async (req, res) => {
 
 export const updateProduct = async (req, res) => {
   const product = req.product;
-  const { name, category, price, description } = req.body;
+  const { name, category, price, description, color, size } = req.body;
   try {
     product.name = name || product.name;
     product.category = category || product.category;
     product.price = price || product.price;
     product.description = description || product.description;
+    product.color = color || product.color;
+    product.size = size || product.size;
     if (req.image) {
       fs.unlink(`./uploads/${product.image}`, async (err) => {
         product.image = req.image;

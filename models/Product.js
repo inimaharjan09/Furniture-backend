@@ -30,14 +30,14 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    // size: {
-    //   type: String,
-    //   required: true,
-    // },
-    // color: {
-    //   type: String,
-    //   required: true,
-    // },
+    size: {
+      type: String,
+      enum: ['S', 'M', 'L', 'XL'],
+    },
+    color: {
+      type: String,
+      enum: ['green', 'blue', 'red', 'yellow', 'black', 'purple'],
+    },
     reviews: [
       {
         username: {
