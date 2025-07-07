@@ -88,3 +88,17 @@ export const updateProfile = async (req, res) => {
     return res.status(400).json({ message: `${err}` });
   }
 };
+
+export const updatePassword = async (req, res) => {
+  const { password } = req.body;
+  const id = req.userId;
+  try {
+    const user = await User.findById(id);
+    const hashPassword = bcrypt.hashSync(password, 10);
+    user.password = hashPassword;
+    await user.save();
+    return res.status(200).json({ message: 'password updated successfully' });
+  } catch (err) {
+    return res.status(400).json({ message: `${err}` });
+  }
+};
